@@ -3,14 +3,43 @@ const fireThere = document.getElementById("fire_button");
 const fireThereNot = document.getElementById("noFire_button");
 const button2s = document.getElementsByclassname("Button2");
 let startFlag = false;
-let logs = [];
 let playingFlag = false;
 let audioStopFlag = false;
 let standby = false;
+let logs = [];
 /*
  <LOG>
  [(LN),(EF),(EN),(LT),(LB),(LTBF),(LTBN),(TM)]
 */
+let logProJ = {
+   "LN" : {
+      "01" : "正常",
+      "02" : "異常",
+      "03" : "検知",
+      "04" : "不明"
+   },
+   "EN" : {
+      "01" : "弁不良",
+      "02" : "検知機不具合",
+      "03" : "自動停止",
+      "04" : "数値異常",
+      "05" : "不明"
+   },
+   "LTBN" : {
+      "01" : {
+         "t" : "起動α",
+         "m" : "手動起動を検知"
+      },
+      "02" : {
+         "t" : "起動β",
+         "m" : "非常起動動作を検知"
+      },
+      "03" : {
+         "t" : "検知１",
+         "m" : "火災移行を検知"
+      }
+   }
+}
 
 // DATE FUNCTION
 function timeTypeChanger(){
@@ -81,13 +110,15 @@ function audioPlay(num,array){
 starts.addEventListener("click" , () => {
   startFlag = true;
   const newDATE = timeTypeChanger();
-  logs.push(["02",0,"00","/-/","/-/",0,"02",newDATE])
+  logsSetArray.push(["02",0,"00","/-/","/-/",0,"02",newDATE])
   audioPlay(1,[]);
 });
 
 fireThere.addEventListener("click" , () => {
  if(startFlag && !standby){
     standby = true;
+    const newDATE = timeTypeChanger();
+    logsSetArray.push(["03",0,"00","/-/","/-/",0,"03",newDATE])
     audioPlay(2,[]);
  }
 });
