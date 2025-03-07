@@ -6,6 +6,7 @@ let startFlag = false;
 let logs = [];
 let playingFlag = false;
 let audioStopFlag = false;
+let standby = false;
 /*
  <LOG>
  [(LN),(EF),(EN),(LT),(LB),(LTBF),(LTBN),(TM)]
@@ -26,13 +27,27 @@ function timeTypeChanger(){
 }
 
 //NOT NEED TO ANYTHING EVENTS
+let logsSetArray = new Proxy(logs, {
+  set: function(target, property, value) {
+    console.log(`配列の ${property} が ${value} に変更されました。`);
+    target[property] = value;
+    // ディスプレイ表示を更新
+    return true;
+  },
+  deleteProperty: function(target, property) {
+    console.log(`配列の ${property} が削除されました。`);
+    delete target[property];
+    // ディスプレイ表示を更新
+    return true;
+  }
+});
+
 (() => {
   const newDATE = timeTypeChanger();
-  logs.push(["01",0,"00","/-/","/-/",0,"01",newDATE])
+  logsSetArray.push(["01",0,"00","/-/","/-/",0,"01",newDATE])
 })()
 
 //NEED TO ADMIRE EVENT
-
 function audioPlay(num,array){
   const audioFileArray = ["startsVoise"]
   let audioFileName = ""
@@ -65,5 +80,14 @@ function audioPlay(num,array){
 
 starts.addEventListener("click" , () => {
   startFlag = true;
+  const newDATE = timeTypeChanger();
+  logs.push(["02",0,"00","/-/","/-/",0,"02",newDATE])
   audioPlay(1,[]);
+});
+
+fireThere.addEventListener("click" , () => {
+ if(startFlag && !standby){
+    standby = true;
+    audioPlay(2,[]);
+ }
 });
