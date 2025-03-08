@@ -87,18 +87,18 @@ let logsSetArray = new Proxy(logs, {
     let body
     let time = vTM
     if(vEF){
-      ttl = vLT
-      body = vEN
+      ttl = "<span style='color: red; margin-right: 15px;'>" + vLT
+      body = "<span style='color: red;'>" + vEN
     }else {
       if(!vLTBF){
-        ttl = vLN + "<" + vLTBN_t + ">"
-        body = vLTBN_m
+        ttl = "<span style='color: white; margin-right: 15px;'>" + vLN + "<" + vLTBN_t + ">"
+        body = "<span style='color: white;'>" + vLTBN_m
       }else {
-        ttl = vLT
-        body = vLB
+        ttl = "<span style='color: white; margin-right: 15px;'>" + vLT
+        body = "<span style='color: white;'>" + vLB
       }
     }
-    document.getElementById("log_display").innerHTML = "<span>" + ttl + "</span>" + "<span>" + time + "</span>" + "<span>" + body + "</span><br>"
+    document.getElementById("log_display").innerHTML += ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
     return true;
   },
   deleteProperty: function(target, property) {
