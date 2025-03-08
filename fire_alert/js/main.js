@@ -8,6 +8,7 @@ let audioStopFlag = false;
 let fire = false;
 let logs = [];
 let floors = [];
+const source = audioContext.createBufferSource();
 /*
  <LOG>
  [(LN),(EF),(EN),(LT),(LB),(LTBF),(LTBN),(TM)]
@@ -170,25 +171,24 @@ function audioPlay(num,array){
   }
 
   if(audioFileName){
+    if(playingFlag){
+      logsSetArray.push(["02",1,"03","検知δ","/-/",0,"00",newDATE])
+      return
+    }
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     fetch('../fire_alert/audio/ac/' + audioFileName + ".mp3")
     .then(response => response.arrayBuffer())
     .then(buffer => audioContext.decodeAudioData(buffer))
     .then(audioBuffer => {
       playingFlag = true;
-      const source = audioContext.createBufferSource();
       source.buffer = audioBuffer;
       source.connect(audioContext.destination);
-      source.loop = true;
+      if(num !== 1){
+        source.loop = true;
+      }else {
+        source.loop = false;
+      }
       source.start();
-
-      const interval = setInterval(() => {
-        if(audioStopFlag){
-          audioStopFlag = false;
-          playingFlag = false;
-          clearInterval(interval)
-        }
-      },1000)
     });
   }
 }
@@ -204,7 +204,7 @@ starts.addEventListener("click" , () => {
 fireThere.addEventListener("click" , () => {
  if(startFlag && floors.length > 0){
     fire = true;
-    audioStopFlag = false;
+    source.stop();
     const newDATE = timeTypeChanger();
     logsSetArray.push(["03",0,"00","/-/","/-/",0,"03",newDATE])
     audioPlay(2,[]);
@@ -214,7 +214,7 @@ fireThere.addEventListener("click" , () => {
 fireThereNot.addEventListener("click" , () => {
  if(startFlag && floors.length > 0){
     fire = true;
-    audioStopFlag = false;
+    source.stop();
     const newDATE = timeTypeChanger();
     logsSetArray.push(["03",0,"00","/-/","/-/",0,"04",newDATE])
     audioPlay(3,[]);
