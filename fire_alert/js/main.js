@@ -86,11 +86,11 @@ let logsSetArray = new Proxy(logs, {
     let ttl
     let body
     let time = vTM
-    if(vEF){
+    if(!vEF){
       ttl = vLT
       body = vEN
     }else {
-      if(vLTBF){
+      if(!vLTBF){
         ttl = vLT + "<" + vLTBN_t + ">"
         body = vLTBN_m
       }else {
