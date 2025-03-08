@@ -70,7 +70,7 @@ let logsSetArray = new Proxy(logs, {
     const vLN = logProJ["LN"][newData[0]]
     const vEF = newData[1]
     let vEN = "/-/"
-    if(vEF){
+    if(!vEF){
       vEN = logProJ["EN"][newData[2]]
     }
     const vLT = newData[3]
@@ -78,7 +78,7 @@ let logsSetArray = new Proxy(logs, {
     const vLTBF = newData[5]
     let vLEBN_t = "/-/"
     let vLEBN_m = "/-/"
-    if(vLTBF){
+    if(!vLTBF){
       vLTBN_t = logProJ["LTBN"][newData[6]]["t"]
       vLTBN_m = logProJ["LTBN"][newData[6]]["m"]
     }
