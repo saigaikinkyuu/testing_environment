@@ -70,7 +70,7 @@ let logsSetArray = new Proxy(logs, {
     console.log(`配列の ${property} が ${value} に変更されました。`);
     if(property === "length") return true
     target[property] = value;
-    const newData = logs[0]
+    const newData = logs[logs.length - 1]
     // ディスプレイ表示を更新
     const vLN = logProJ["LN"][newData[0]]
     const vEF = newData[1]
