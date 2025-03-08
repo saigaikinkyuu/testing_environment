@@ -212,7 +212,7 @@ fireThere.addEventListener("click" , () => {
     fire = true;
     source.stop();
     playingFlag = false;
-    document.getElementById("ttlPage").style.color = "black"
+    document.getElementById("ttlPage").style.color = "red"
     const newDATE = timeTypeChanger();
     logsSetArray.push(["03",0,"00","/-/","/-/",0,"03",newDATE])
     audioPlay(2,[]);
