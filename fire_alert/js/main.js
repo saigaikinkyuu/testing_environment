@@ -123,7 +123,7 @@ function audioPlay(num,array){
 
   if(audioFileName){
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    fetch('../audio/ac/' + audioFileName)
+    fetch('../audio/ac/' + audioFileName + ".mp3")
     .then(response => response.arrayBuffer())
     .then(buffer => audioContext.decodeAudioData(buffer))
     .then(audioBuffer => {
