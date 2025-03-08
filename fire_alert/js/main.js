@@ -1,6 +1,6 @@
 const starts = document.getElementById("start_button");
 const fireThere = document.getElementById("fire_button");
-const fireThereNot = document.getElementById("noFire_button");
+const fireThereNot = document.getElementById("notFire_button");
 const button2s = document.querySelectorAll(".button2");
 let startFlag = false;
 let playingFlag = false;
