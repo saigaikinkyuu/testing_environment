@@ -9,7 +9,7 @@ let fire = false;
 let logs = [];
 let floors = [];
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const source;
+let source = null;
 /*
  <LOG>
  [(LN),(EF),(EN),(LT),(LB),(LTBF),(LTBN),(TM)]
