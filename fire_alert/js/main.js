@@ -103,7 +103,12 @@ let logsSetArray = new Proxy(logs, {
         body = "<span style='color: white;'>" + vLB
       }
     }
-    document.getElementById("log_display").innerHTML += ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
+    const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
+    for(let i = 0;i<message.length;i++){
+      setTimeout(() => {
+        document.getElementById("log_display").innerHTML += message[i];
+      },200)
+    }
     return true;
   },
   deleteProperty: function(target, property) {
