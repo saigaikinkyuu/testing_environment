@@ -1,7 +1,7 @@
 const starts = document.getElementById("start_button");
 const fireThere = document.getElementById("fire_button");
 const fireThereNot = document.getElementById("notFire_button");
-const button2s = document.querySelectorAll(".button2");
+const button2s = document.querySelectorAll(".floor_button");
 let startFlag = false;
 let playingFlag = false;
 let audioStopFlag = false;
@@ -229,6 +229,7 @@ fireThereNot.addEventListener("click" , () => {
 button2s.forEach(element => {
   element.addEventListener("click", function() {
     const floorName = element.dataset.floor
+    const newDATE = timeTypeChanger();
     if(floors.length > 0 && !floors.includes(floorName)) return
     if(!floors.includes(floorName)){
       floors.push()
