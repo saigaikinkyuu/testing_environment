@@ -5,7 +5,7 @@ const button2s = document.getElementsByclassname("Button2");
 let startFlag = false;
 let playingFlag = false;
 let audioStopFlag = false;
-let standby = false;
+let fire = false;
 let logs = [];
 /*
  <LOG>
@@ -37,6 +37,10 @@ let logProJ = {
       "03" : {
          "t" : "検知１",
          "m" : "火災移行を検知"
+      },
+      "04" : {
+         "t" : "検知２",
+         "m" : "非火災移行を検知"
       }
    }
 }
@@ -129,10 +133,11 @@ function audioPlay(num,array){
       source.loop = true;
       source.start();
 
-      setInterval(() => {
+      const interval = setInterval(() => {
         if(audioStopFlag){
           audioStopFlag = false;
           playingFlag = false;
+          clearInterval(interval)
         }
       },1000)
     });
@@ -142,15 +147,26 @@ function audioPlay(num,array){
 starts.addEventListener("click" , () => {
   startFlag = true;
   const newDATE = timeTypeChanger();
-  logsSetArray.push(["02",0,"00","/-/","/-/",0,"02",newDATE])
+  logsSetArray.push(["03",0,"00","/-/","/-/",0,"02",newDATE])
   audioPlay(1,[]);
 });
 
 fireThere.addEventListener("click" , () => {
- if(startFlag && !standby){
-    standby = true;
+ if(startFlag){
+    fire = true;
+    audioStopFlag = false;
     const newDATE = timeTypeChanger();
     logsSetArray.push(["03",0,"00","/-/","/-/",0,"03",newDATE])
     audioPlay(2,[]);
+ }
+});
+
+fireThereNot.addEventListener("click" , () => {
+ if(startFlag){
+    fire = true;
+    audioStopFlag = false;
+    const newDATE = timeTypeChanger();
+    logsSetArray.push(["03",0,"00","/-/","/-/",0,"04",newDATE])
+    audioPlay(3,[]);
  }
 });
