@@ -134,14 +134,18 @@ let logsSetArray = new Proxy(logs, {
     const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
     if((document.getElementById("log_display").innerHTML).includes(message)) return true
     for(let i = 0;i<message_array.length;i++){
-      if(i === 1 || i === 4 || i === 7){
-        for(let u = 0;u<message_array[i].length;u++){
-          setTimeout(() => {
-            document.getElementById("log_display").innerHTML += message_array[i][u];
-          },600)
-        }
-      }else {
-        document.getElementById("log_display").innerHTML += message_array[i];
+      i++
+      for(let u = 0;u<message_array[i].length;u++){
+        setTimeout(() => {
+          if(u === 0){
+            document.getElementById("log_display").innerHTML += message_array[i - 1]
+          }
+          document.getElementById("log_display").innerHTML += message_array[i][u];
+          if(u === (message_array[i].length - 1)){
+            i++
+            document.getElementById("log_display").innerHTML += message_array[i]
+          }
+        },600)
       }
     }
     return true;
