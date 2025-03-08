@@ -1,12 +1,13 @@
 const starts = document.getElementById("start_button");
 const fireThere = document.getElementById("fire_button");
 const fireThereNot = document.getElementById("noFire_button");
-const button2s = document.getElementsByclassname("Button2");
+const button2s = document.querySelectorAll(".button2");
 let startFlag = false;
 let playingFlag = false;
 let audioStopFlag = false;
 let fire = false;
 let logs = [];
+let floors = [];
 /*
  <LOG>
  [(LN),(EF),(EN),(LT),(LB),(LTBF),(LTBN),(TM)]
@@ -146,6 +147,7 @@ function audioPlay(num,array){
 
 starts.addEventListener("click" , () => {
   startFlag = true;
+  floors = [];
   const newDATE = timeTypeChanger();
   logsSetArray.push(["03",0,"00","/-/","/-/",0,"02",newDATE])
   audioPlay(1,[]);
@@ -169,4 +171,15 @@ fireThereNot.addEventListener("click" , () => {
     logsSetArray.push(["03",0,"00","/-/","/-/",0,"04",newDATE])
     audioPlay(3,[]);
  }
+});
+
+button2s.forEach(element => {
+  element.addEventListener("click", function() {
+    const floorName = element.dataset.floor
+    if(!floors.includes(floorName)){
+      floors.push()
+    }else {
+      floors.splice(floors.indexOf(floorName),floors.indexOf(floorName) + 1)
+    }
+  });
 });
