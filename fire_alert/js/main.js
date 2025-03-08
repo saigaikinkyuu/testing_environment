@@ -68,7 +68,7 @@ function timeTypeChanger(){
 let logsSetArray = new Proxy(logs, {
   set: function(target, property, value) {
     console.log(`配列の ${property} が ${value} に変更されました。`);
-    if(property === "長さ") return true
+    if(property === "length") return true
     target[property] = value;
     const newData = logs[0]
     // ディスプレイ表示を更新
@@ -140,9 +140,10 @@ let logsSetArray = new Proxy(logs, {
     for(let i = 0;i < 3;i++){
       let t = 1 + ( i * 3 );
       for(let u = 0;u<message_array[t].length;u++){
+        if((document.getElementById(element_id_name[i] + logs.length).innerHTML).includes(message_array[t])) break
         setTimeout(() => {
           document.getElementById(element_id_name[i] + logs.length).innerHTML += message_array[t][u];
-        },600)
+        },1000)
       }
     }
     return true;
