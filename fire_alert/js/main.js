@@ -48,6 +48,10 @@ let logProJ = {
       "04" : {
          "t" : "検知２",
          "m" : "非火災移行を検知"
+      },
+      "05" : {
+         "t" : "起動・感知",
+         "m" : "放送階感知を検知"
       }
    }
 }
@@ -233,8 +237,8 @@ button2s.forEach(element => {
     const newDATE = timeTypeChanger();
     if(floors.length > 0 && !floors.includes(floorName)) return
     if(!floors.includes(floorName)){
-      floors.push()
-      logsSetArray.push(["03",0,"00","/-/","/-/",0,"03",newDATE])
+      floors.push(floorName)
+      logsSetArray.push(["03",0,"00","/-/","/-/",0,"05",newDATE])
       audioPlay((Number(floorName) + 3),[]);
     }else {
       floors.splice(floors.indexOf(floorName),floors.indexOf(floorName) + 1)
