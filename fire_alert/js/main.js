@@ -93,38 +93,38 @@ let logsSetArray = new Proxy(logs, {
     let time = vTM
     let message_array = [];
     if(vEF){
-      message_array.push("<span style='color: red; margin-right: 15px;'>")
+      message_array.push("<span style='color: red; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
       message_array.push(vLT)
       message_array.push("</span>")
-      message_array.push("<span style='color: white; margin-right: 15px;'>")
+      message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
       message_array.push(time)
       message_array.push("</span>")
-      message_array.push("<span style='color: red;'>")
+      message_array.push("<span style='color: red;' id='log_body_" + logs.length + "'>")
       message_array.push(vEN)
       message_array.push("</span><br>")
       ttl = "<span style='color: red; margin-right: 15px;'>" + vLT
       body = "<span style='color: red;'>" + vEN
     }else {
       if(!vLTBF){
-        message_array.push("<span style='color: white; margin-right: 15px;'>")
+        message_array.push("<span style='color: white; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
         message_array.push(vLN + "<" + vLTBN_t + ">")
         message_array.push("</span>")
-        message_array.push("<span style='color: white; margin-right: 15px;'>")
+        message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
         message_array.push(time)
         message_array.push("</span>")
-        message_array.push("<span style='color: white;'>")
+        message_array.push("<span style='color: white;' id='log_body_" + logs.length + "'>")
         message_array.push(vLTBN_m)
         message_array.push("</span><br>")
         ttl = "<span style='color: white; margin-right: 15px;'>" + vLN + "<" + vLTBN_t + ">"
         body = "<span style='color: white;'>" + vLTBN_m
       }else {
-        message_array.push("<span style='color: white; margin-right: 15px;'>")
+        message_array.push("<span style='color: white; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
         message_array.push(vLT)
         message_array.push("</span>")
-        message_array.push("<span style='color: white; margin-right: 15px;'>")
+        message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
         message_array.push(time)
         message_array.push("</span>")
-        message_array.push("<span style='color: white;'>")
+        message_array.push("<span style='color: white;' id='log_body_" + logs.length + "'>")
         message_array.push(vLB)
         message_array.push("</span><br>")
         ttl = "<span style='color: white; margin-right: 15px;'>" + vLT
@@ -133,18 +133,15 @@ let logsSetArray = new Proxy(logs, {
     }
     const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
     if((document.getElementById("log_display").innerHTML).includes(message)) return true
-    for(let i = 0;i<message_array.length;i++){
-      i++
-      for(let u = 0;u<message_array[i].length;u++){
+    document.getElementById("log_display").innerHTML += message_array[0] + message_array[2]
+    document.getElementById("log_display").innerHTML += message_array[3] + message_array[5]
+    document.getElementById("log_display").innerHTML += message_array[6] + message_array[8]
+    let element_id_name = ["log_ttl_","log_time_","log_body_"]
+    for(let i = 0;i < 3;i++){
+      let t = 1 + ( i * 3 );
+      for(let u = 0;u<message_array[t].length;u++){
         setTimeout(() => {
-          if(u === 0){
-            document.getElementById("log_display").innerHTML += message_array[i - 1]
-          }
-          document.getElementById("log_display").innerHTML += message_array[i][u];
-          if(u === (message_array[i].length - 1)){
-            i++
-            document.getElementById("log_display").innerHTML += message_array[i]
-          }
+          document.getElementById(element_id_name[i] + logs.length).innerHTML += message_array[t][u];
         },600)
       }
     }
