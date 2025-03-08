@@ -55,8 +55,8 @@ function timeTypeChanger(){
   const hour = ("0" + newD.getHours()).slice(-2);
   const minute = ("0" + newD.getMinutes()).slice(-2);
   const second = ("0" + newD.getSeconds()).slice(-2);
-  const second1000 = newD.getMilliseconds();
-  const typeC = year + "." + month + "." + day + " " + hour + ":" + minute + ":" + second + "." + (second1000 - (second * 1000));
+  const second1000 = ("00" + newD.getMilliseconds()).slice(-3);
+  const typeC = year + "." + month + "." + day + " " + hour + ":" + minute + ":" + second + "." + second1000;
   return typeC;
 }
 
