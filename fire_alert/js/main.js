@@ -61,6 +61,38 @@ let logsSetArray = new Proxy(logs, {
     console.log(`配列の ${property} が ${value} に変更されました。`);
     target[property] = value;
     // ディスプレイ表示を更新
+    const vLN = logProJ["LN"][value[0]]
+    const vEF = value[1]
+    let vEN = "/-/"
+    if(vEF){
+      vEN = logProJ["EN"][value[2]]
+    }
+    const vLT = value[3]
+    const vLB = value[4]
+    const vLTBF = value[5]
+    let vLEBN_t = "/-/"
+    let vLEBN_m = "/-/"
+    if(vLTBF){
+      vLTBN_t = logProJ["LTBN"][value[6]]["t"]
+      vLTBN_m = logProJ["LTBN"][value[6]]["m"]
+    }
+    const vTM = value[7]
+    let ttl
+    let body
+    let time = vTM
+    if(vEF){
+      ttl = vLT
+      body = vEN
+    }else {
+      if(vLTBF){
+        ttl = vLT + "<" + vLTBN_t + ">"
+        body = vLTBN_m
+      }else {
+        ttl = vLT
+        body = vLB
+      }
+    }
+    document.getElementById("log_display").innerHTML = "<span>" + ttl + "</span>" + "<span>" + time + "</span>" + "<span>" + body + "</span><br>"
     return true;
   },
   deleteProperty: function(target, property) {
