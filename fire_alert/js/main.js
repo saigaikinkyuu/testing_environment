@@ -104,6 +104,7 @@ let logsSetArray = new Proxy(logs, {
       }
     }
     const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
+    if((document.getElementById("log_display").innerHTML).includes(message)) return true
     for(let i = 0;i<message.length;i++){
       setTimeout(() => {
         document.getElementById("log_display").innerHTML += message[i];
