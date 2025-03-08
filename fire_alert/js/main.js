@@ -158,7 +158,7 @@ let logsSetArray = new Proxy(logs, {
 
 (() => {
   const newDATE = timeTypeChanger();
-  logsSetArray.push(["01",0,"00","/-/","/-/",0,"01",newDATE])
+  logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
 })()
 
 //NEED TO ADMIRE EVENT
