@@ -83,6 +83,7 @@ let logsSetArray = new Proxy(logs, {
       vLTBN_m = logProJ["LTBN"][newData[6]]["m"]
     }
     const vTM = newData[7]
+    console.log(newData)
     console.log(vLN + "," + vEF + "," + vLT + "," + vLT + "," + vLB + "," + vLTBF + "," + vLEBN_t + "," + vLEBN_m + "," + vTM)
     let ttl
     let body
