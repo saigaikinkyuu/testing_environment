@@ -70,25 +70,23 @@ let logsSetArray = new Proxy(logs, {
     const vLN = logProJ["LN"][newData[0]]
     const vEF = newData[1]
     let vEN = "/-/"
-    if(!vEF){
+    if(vEF){
       vEN = logProJ["EN"][newData[2]]
     }
     const vLT = newData[3]
     const vLB = newData[4]
     const vLTBF = newData[5]
-    let vLEBN_t = "/-/"
-    let vLEBN_m = "/-/"
+    let vLTBN_t = "/-/"
+    let vLTBN_m = "/-/"
     if(!vLTBF){
       vLTBN_t = logProJ["LTBN"][newData[6]]["t"]
       vLTBN_m = logProJ["LTBN"][newData[6]]["m"]
     }
     const vTM = newData[7]
-    console.log(newData)
-    console.log(vLN + "," + vEF + "," + vLT + "," + vLT + "," + vLB + "," + vLTBF + "," + vLEBN_t + "," + vLEBN_m + "," + vTM)
     let ttl
     let body
     let time = vTM
-    if(!vEF){
+    if(vEF){
       ttl = vLT
       body = vEN
     }else {
