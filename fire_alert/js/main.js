@@ -1,6 +1,7 @@
 const starts = document.getElementById("start_button");
 const fireThere = document.getElementById("fire_button");
 const fireThereNot = document.getElementById("notFire_button");
+const stopDetect = document.getElementById("stop_detect");
 const button2s = document.querySelectorAll(".floor_button");
 let startFlag = false;
 let playingFlag = false;
@@ -52,6 +53,22 @@ let logProJ = {
       "05" : {
          "t" : "起動・感知",
          "m" : "放送階感知を検知"
+      },
+      "06" : {
+         "t" : "復位",
+         "m" : "検知情報を正常に復位"
+      },
+      "07" : {
+         "t" : "検知３",
+         "m" : "火災システム終了を検知"
+      },
+      "08" : {
+         "t" : "検知３",
+         "m" : "誘導灯の終了を検知"
+      },
+      "09" : {
+         "t" : "検知３",
+         "m" : "放送階のリセットを検知"
       }
    }
 }
@@ -221,10 +238,10 @@ fireThere.addEventListener("click" , () => {
 
 fireThereNot.addEventListener("click" , () => {
  if(startFlag && floors.length > 0){
-    fire = true;
+    fire = false;
     source.stop();
     playingFlag = false;
-    document.getElementById("ttlPage").style.color = "black"
+    document.getElementById("ttlPage").style.color = "red"
     const newDATE = timeTypeChanger();
     logsSetArray.push(["03",0,"00","/-/","/-/",0,"04",newDATE])
     audioPlay(3,[]);
@@ -245,4 +262,22 @@ button2s.forEach(element => {
       source.stop();
     }
   });
+});
+
+stopDetect.addEventListener("click" , () => {
+ if(startFlag && floors.length > 0){
+    fire = false;
+    source.stop();
+    playingFlag = false;
+    document.getElementById("ttlPage").style.color = "black"
+    floors = [];
+    if(fire){
+      logsSetArray.push(["03",0,"00","/-/","/-/",0,"05",newDATE])
+    }
+    const newDATE = timeTypeChanger();
+    logsSetArray.push(["03",0,"00","/-/","/-/",0,"07",newDATE])
+    logsSetArray.push(["03",0,"00","/-/","/-/",0,"08",newDATE])
+    logsSetArray.push(["03",0,"00","/-/","/-/",0,"09",newDATE])
+    logsSetArray.push(["01",0,"00","/-/","/-/",0,"06",newDATE])
+ }
 });
