@@ -8,6 +8,7 @@ let audioStopFlag = false;
 let fire = false;
 let logs = [];
 let floors = [];
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const source = audioContext.createBufferSource();
 /*
  <LOG>
@@ -175,7 +176,6 @@ function audioPlay(num,array){
       logsSetArray.push(["02",1,"03","検知δ","/-/",0,"00",newDATE])
       return
     }
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     fetch('../fire_alert/audio/ac/' + audioFileName + ".mp3")
     .then(response => response.arrayBuffer())
     .then(buffer => audioContext.decodeAudioData(buffer))
