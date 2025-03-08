@@ -91,24 +91,58 @@ let logsSetArray = new Proxy(logs, {
     let ttl
     let body
     let time = vTM
+    let message_array = [];
     if(vEF){
+      message_array.push("<span style='color: red; margin-right: 15px;'>")
+      message_array.push(vLT)
+      message_array.push("</span>")
+      message_array.push("<span style='color: white; margin-right: 15px;'>")
+      message_array.push(time)
+      message_array.push("</span>")
+      message_array.push("<span style='color: red;'>")
+      message_array.push(vEN)
+      message_array.push("</span><br>")
       ttl = "<span style='color: red; margin-right: 15px;'>" + vLT
       body = "<span style='color: red;'>" + vEN
     }else {
       if(!vLTBF){
+        message_array.push("<span style='color: white; margin-right: 15px;'>")
+        message_array.push(vLN + "<" + vLTBN_t + ">")
+        message_array.push("</span>")
+        message_array.push("<span style='color: white; margin-right: 15px;'>")
+        message_array.push(time)
+        message_array.push("</span>")
+        message_array.push("<span style='color: white;'>")
+        message_array.push(vLTBN_m)
+        message_array.push("</span><br>")
         ttl = "<span style='color: white; margin-right: 15px;'>" + vLN + "<" + vLTBN_t + ">"
         body = "<span style='color: white;'>" + vLTBN_m
       }else {
+        message_array.push("<span style='color: white; margin-right: 15px;'>")
+        message_array.push(vLT)
+        message_array.push("</span>")
+        message_array.push("<span style='color: white; margin-right: 15px;'>")
+        message_array.push(time)
+        message_array.push("</span>")
+        message_array.push("<span style='color: white;'>")
+        message_array.push(vLB)
+        message_array.push("</span><br>")
         ttl = "<span style='color: white; margin-right: 15px;'>" + vLT
         body = "<span style='color: white;'>" + vLB
       }
     }
     const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
     if((document.getElementById("log_display").innerHTML).includes(message)) return true
-    for(let i = 0;i<message.length;i++){
-      setTimeout(() => {
-        document.getElementById("log_display").innerHTML += message[i];
-      },200)
+    for(let i = 0;i<message_array.length;i++){
+      if(i === 1 || i === 4 || i === 7){
+        for(let u = 0;u<message_array[i].lenngth;u++){
+          setTimeout(() => {
+            document.getElementById("log_display").innerHTML += message_array[i][u];
+          },600)
+        }
+      }else {
+        document.getElementById("log_display").innerHTML += message_array[i];
+      }
     }
     return true;
   },
