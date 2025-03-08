@@ -165,7 +165,7 @@ let logsSetArray = new Proxy(logs, {
 
 //NEED TO ADMIRE EVENT
 function audioPlay(num,array){
-  const audioFileArray = ["startsVoise"]
+  const audioFileArray = ["startsVoise","一般①","誤報①","感知_1","感知_2","感知_3","感知_4"]
   let audioFileName = ""
   if(num){
     audioFileName = audioFileArray[num - 1]
@@ -173,8 +173,8 @@ function audioPlay(num,array){
 
   if(audioFileName){
     if(playingFlag){
-      logsSetArray.push(["02",1,"03","検知δ","/-/",0,"00",newDATE])
-      return
+      source.stop();
+      playingFlag = false;
     }
     fetch('../fire_alert/audio/ac/' + audioFileName + ".mp3")
     .then(response => response.arrayBuffer())
@@ -196,6 +196,7 @@ function audioPlay(num,array){
 starts.addEventListener("click" , () => {
   startFlag = true;
   floors = [];
+  document.getElementById("ttlPage").style.color = "red"
   const newDATE = timeTypeChanger();
   logsSetArray.push(["03",0,"00","/-/","/-/",0,"02",newDATE])
   audioPlay(1,[]);
@@ -205,6 +206,8 @@ fireThere.addEventListener("click" , () => {
  if(startFlag && floors.length > 0){
     fire = true;
     source.stop();
+    playingFlag = false;
+    document.getElementById("ttlPage").style.color = "black"
     const newDATE = timeTypeChanger();
     logsSetArray.push(["03",0,"00","/-/","/-/",0,"03",newDATE])
     audioPlay(2,[]);
@@ -215,6 +218,8 @@ fireThereNot.addEventListener("click" , () => {
  if(startFlag && floors.length > 0){
     fire = true;
     source.stop();
+    playingFlag = false;
+    document.getElementById("ttlPage").style.color = "black"
     const newDATE = timeTypeChanger();
     logsSetArray.push(["03",0,"00","/-/","/-/",0,"04",newDATE])
     audioPlay(3,[]);
@@ -224,10 +229,14 @@ fireThereNot.addEventListener("click" , () => {
 button2s.forEach(element => {
   element.addEventListener("click", function() {
     const floorName = element.dataset.floor
+    if(floors.length > 0 && !floors.includes(floorName)) return
     if(!floors.includes(floorName)){
       floors.push()
+      logsSetArray.push(["03",0,"00","/-/","/-/",0,"03",newDATE])
+      audioPlay((Number(floorName) + 3),[]);
     }else {
       floors.splice(floors.indexOf(floorName),floors.indexOf(floorName) + 1)
+      source.stop();
     }
   });
 });
