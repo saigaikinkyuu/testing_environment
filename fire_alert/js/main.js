@@ -65,23 +65,24 @@ let logsSetArray = new Proxy(logs, {
   set: function(target, property, value) {
     console.log(`配列の ${property} が ${value} に変更されました。`);
     target[property] = value;
+    const newData = logs[0]
     // ディスプレイ表示を更新
-    const vLN = logProJ["LN"][value[0]]
-    const vEF = value[1]
+    const vLN = logProJ["LN"][newData[0]]
+    const vEF = newData[1]
     let vEN = "/-/"
     if(vEF){
-      vEN = logProJ["EN"][value[2]]
+      vEN = logProJ["EN"][newData[2]]
     }
-    const vLT = value[3]
-    const vLB = value[4]
-    const vLTBF = value[5]
+    const vLT = newData[3]
+    const vLB = newData[4]
+    const vLTBF = newData[5]
     let vLEBN_t = "/-/"
     let vLEBN_m = "/-/"
     if(vLTBF){
-      vLTBN_t = logProJ["LTBN"][value[6]]["t"]
-      vLTBN_m = logProJ["LTBN"][value[6]]["m"]
+      vLTBN_t = logProJ["LTBN"][newData[6]]["t"]
+      vLTBN_m = logProJ["LTBN"][newData[6]]["m"]
     }
-    const vTM = value[7]
+    const vTM = newData[7]
     let ttl
     let body
     let time = vTM
