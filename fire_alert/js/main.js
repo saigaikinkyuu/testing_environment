@@ -135,7 +135,7 @@ let logsSetArray = new Proxy(logs, {
     if((document.getElementById("log_display").innerHTML).includes(message)) return true
     for(let i = 0;i<message_array.length;i++){
       if(i === 1 || i === 4 || i === 7){
-        for(let u = 0;u<message_array[i].lenngth;u++){
+        for(let u = 0;u<message_array[i].length;u++){
           setTimeout(() => {
             document.getElementById("log_display").innerHTML += message_array[i][u];
           },600)
