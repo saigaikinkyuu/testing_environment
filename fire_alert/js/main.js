@@ -275,9 +275,17 @@ stopDetect.addEventListener("click" , () => {
       logsSetArray.push(["03",0,"00","/-/","/-/",0,"05",newDATE])
     }
     const newDATE = timeTypeChanger();
-    logsSetArray.push(["03",0,"00","/-/","/-/",0,"07",newDATE])
-    logsSetArray.push(["03",0,"00","/-/","/-/",0,"08",newDATE])
-    logsSetArray.push(["03",0,"00","/-/","/-/",0,"09",newDATE])
-    logsSetArray.push(["01",0,"00","/-/","/-/",0,"06",newDATE])
+    setTimeout(() => {
+      logsSetArray.push(["03",0,"00","/-/","/-/",0,"07",newDATE])
+      setTimeout(() => {
+        logsSetArray.push(["03",0,"00","/-/","/-/",0,"08",newDATE])
+        setTimeout(() => {
+          logsSetArray.push(["03",0,"00","/-/","/-/",0,"09",newDATE])
+          setTimeout(() => {
+            logsSetArray.push(["01",0,"00","/-/","/-/",0,"06",newDATE])
+          },1000)
+        },1000)
+      },1000)
+    },1000)
  }
 });
