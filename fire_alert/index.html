@@ -5,43 +5,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>火災報知器</title>
+  <style>
+    #ttlPage{
+      font-size: 70px;
+      text-align: center;
+      margin: 0px;
+    }
+    #h3_ttL1{
+      font-size: 30px;
+      text-align: center;
+      color: white;
+      margin: 0px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .button1{
+      width: 20%;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-align: center;
+      margin-left: 40%;
+      color: white;
+      background-color: red;
+      border-radius: 70px;
+      border: 4px solid white;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .h3_ttl2{
+      color: white;
+      font-size: 30px;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .floorA{
+      width: 30%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+      border-right: 2px dashed;
+    }
+    .floor_button{
+      width: 40%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 15%;
+      text-align: center;
+      font-size: 1.17em;
+      background-color: white;
+      font-weight: 600;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
   <div id="page1">
-    <h2>火災</h2>
+    <h2 id="ttl">火　　　　　　　災</h2>
     <div>
-      <h3>非常起動</h3>
-      <a id="start_button" class="button1"></a>
+      <h3 id="h3_ttL1">非　常　起　動</h3>
+      <a id="start_button" class="button1">強く押せ</a>
     </div>
-    <div>
-      <h3>火災</h3>
-      <a id="fire_button" class="button1"></a>
+    <div style="display: flex;">
+      <div style="width: 50%;">
+        <h3 class="h3_ttl2">火　災</h3>
+        <a id="fire_button" class="button1">強く押せ</a>
+      </div>
+      <div style="width: 50%;">
+        <h3 class="h3_ttl2">非 火 災</h3>
+        <a id="notFire_button" class="button1">強く押せ</a>
+      </div>
     </div>
-    <div>
-      <h3>非火災</h3>
-      <a id="notFire_button" class="button1"></a>
-    </div>
-    <div>
-      <div>
+    <div style="display: flex;margin-top: 20px;">
+      <div style="border-right: 3px solid gray;width: 30%;">
         <!-- 放送階選択スイッチ -->
         <floor>
-          <h3>1階</h3>
+          <h3 class="floorA">1階</h3>
           <a id="button2" class="floor_button" data-floor="1">強く押せ</a>
         </floor>
         <floor>
-          <h3>2階</h3>
+          <h3 class="floorA">2階</h3>
           <a id="button2" class="floor_button" data-floor="2">強く押せ</a>
         </floor>
         <floor>
-          <h3>3階</h3>
+          <h3 class="floorA">3階</h3>
           <a id="button2" class="floor_button" data-floor="3">強く押せ</a>
         </floor>
         <floor>
-          <h3>4階</h3>
+          <h3 class="floorA">4階</h3>
           <a id="button2" class="floor_button" data-floor="4">強く押せ</a>
         </floor>
       </div>
-      <div>
+      <div style="width: 70%;">
         <!-- その他 -->
         <div id="log_display"></div>
       </div>
