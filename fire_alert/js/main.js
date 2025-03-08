@@ -9,7 +9,7 @@ let fire = false;
 let logs = [];
 let floors = [];
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const source = audioContext.createBufferSource();
+const source;
 /*
  <LOG>
  [(LN),(EF),(EN),(LT),(LB),(LTBF),(LTBN),(TM)]
@@ -181,6 +181,7 @@ function audioPlay(num,array){
     .then(buffer => audioContext.decodeAudioData(buffer))
     .then(audioBuffer => {
       playingFlag = true;
+      source = audioContext.createBufferSource();
       source.buffer = audioBuffer;
       source.connect(audioContext.destination);
       if(num !== 1){
