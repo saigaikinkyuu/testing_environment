@@ -154,7 +154,7 @@ starts.addEventListener("click" , () => {
 });
 
 fireThere.addEventListener("click" , () => {
- if(startFlag){
+ if(startFlag && floors.length > 0){
     fire = true;
     audioStopFlag = false;
     const newDATE = timeTypeChanger();
@@ -164,7 +164,7 @@ fireThere.addEventListener("click" , () => {
 });
 
 fireThereNot.addEventListener("click" , () => {
- if(startFlag){
+ if(startFlag && floors.length > 0){
     fire = true;
     audioStopFlag = false;
     const newDATE = timeTypeChanger();
