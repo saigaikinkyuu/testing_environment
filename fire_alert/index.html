@@ -93,6 +93,15 @@
       font-weight: 600;
       margin-top: 10px;
     }
+    #log_terminal{
+      background-color: black;
+      color: white;
+      font-size: 16px;
+      width: 100%;
+    }
+    #log_terminal:forcus{
+      outline: 0;
+    }
   </style>
 </head>
 <body style="background-color: #bcbcbc;">
@@ -134,7 +143,9 @@
       </div>
       <div style="width: 66%;margin-left: 2%;margin-right: 2%;background-color: black;height: 200px;overflow-y: scroll;scrollbar-width: none;">
         <!-- その他 -->
-        <div id="log_display"></div>
+        <div id="log_display">
+          <inpput type="text" id="log_terminal" />
+        </div>
       </div>
     </div>
     <a id="stop_detect">非常復帰</a>
