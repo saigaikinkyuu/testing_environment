@@ -10,6 +10,7 @@ let fire = false;
 let logs = [];
 let floors = [];
 let system = false;
+let stanby = false;
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let source = null;
 /*
@@ -240,6 +241,7 @@ fireThere.addEventListener("click" , () => {
  if(startFlag && floors.length > 0){
     fire = true;
     source.stop();
+    stanby = false;
     playingFlag = false;
     document.getElementById("ttlPage").style.color = "red"
     const newDATE = timeTypeChanger();
@@ -252,6 +254,7 @@ fireThereNot.addEventListener("click" , () => {
  if(!system) return
  if(startFlag && floors.length > 0){
     fire = false;
+    stanby = false;
     source.stop();
     playingFlag = false;
     document.getElementById("ttlPage").style.color = "red"
@@ -271,10 +274,17 @@ button2s.forEach(element => {
       floors.push(floorName)
       document.getElementById("floor_button_" + floors[0]).style.color = "red"
       logsSetArray.push(["03",0,"00","/-/","/-/",0,"05",newDATE])
+      stanby = true;
       audioPlay((Number(floorName) + 3),[]);
+      setTimeout(() => {
+        if(stanby){
+          fireThere.dispatchEvent(new Event('click'));
+        }
+      },5 * 60 * 1000)
     }else {
       floors.splice(floors.indexOf(floorName),floors.indexOf(floorName) + 1)
       document.getElementById("floor_button_" + floors[0]).style.color = "black"
+      stanby = false;
       source.stop();
     }
   });
