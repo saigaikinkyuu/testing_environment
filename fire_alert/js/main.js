@@ -29,7 +29,8 @@ let logProJ = {
       "02" : "検知機不具合",
       "03" : "自動停止",
       "04" : "数値異常",
-      "05" : "不明"
+      "05" : "CMDエラー",
+      "06" : "不明"
    },
    "LTBN" : {
       "00" : {
@@ -125,7 +126,7 @@ function timeTypeChanger(){
         message_array.push("<span style='color: red; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
         message_array.push(vLT)
         message_array.push("</span>")
-        message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
+        message_array.push("<span style='color: red; margin-right: 15px;' id='log_time_" + logs.length + "'>")
         message_array.push(time)
         message_array.push("</span>")
         message_array.push("<span style='color: red;' id='log_body_" + logs.length + "'>")
@@ -266,7 +267,7 @@ fireThereNot.addEventListener("click" , () => {
 
 button2s.forEach(element => {
   element.addEventListener("click", function() {
-    if(!system) return
+    if(!system || !startFlag) return
     const floorName = element.dataset.floor
     const newDATE = timeTypeChanger();
     if(floors.length > 0 && !floors.includes(floorName)) return
@@ -333,20 +334,31 @@ function inputTerminal(){
         //
       }else if(subLog === "system finish"){
         if(!system){
-          //alredy deta!!
+          logsSetArray.push(["02",1,"05","THERE IS A DATA ALREADY","/-/",0,"00",newDATE])
         }else {
           system = false;
           logsSetArray.push(["01",0,"00","/-/","/-/",0,"99",newDATE])
         }
       }else if(subLog === "system start"){
         if(system){
-          //already data!!
+          logsSetArray.push(["02",1,"05","THERE IS A DATA ALREADY","/-/",0,"00",newDATE])
         }else {
           system = true;
           logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
         }
+      }else if(subLog.includes("detect")){
+        if(subLog.replace("detect ") === "1" || subLog.replace("detect ") === "2" || subLog.replace("detect ") === "3" || subLog.replace("detect ") === "4"){
+          if(system){
+            startFlag = true;
+            document.getELementById("floor_button_" + subLog.replace("detect ")).dispatchEvent(new Event('click'));
+          }else {
+            logsSetArray.push(["02",1,"05","UNAVAILABLE CODE","/-/",0,"00",newDATE])
+          }
+        }else {
+          logsSetArray.push(["02",1,"03","UNKNOWN CODE","/-/",0,"00",newDATE])
+        }
       }else {
-        logsSetArray.push(["02",1,"03","不明なコード","/-/",0,"00",newDATE])
+        logsSetArray.push(["02",1,"03","UNKNOWN CODE","/-/",0,"00",newDATE])
       }
     }
   });
