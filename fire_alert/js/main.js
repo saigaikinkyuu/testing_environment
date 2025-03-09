@@ -346,7 +346,7 @@ function inputTerminal(){
           system = true;
           logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
         }
-      }else if(subLog.includes("detect")){
+      }else if(subLog.slice(0,6) === "detect"){
         if(subLog.replace("detect ","") === "1" || subLog.replace("detect ","") === "2" || subLog.replace("detect ","") === "3" || subLog.replace("detect ","") === "4"){
           if(system){
             startFlag = true;
@@ -356,6 +356,10 @@ function inputTerminal(){
           }
         }else {
           logsSetArray.push(["02",1,"03","UNKNOWN CODE","/-/",0,"00",newDATE])
+        }
+      }else if(subLog.slice(0,2) === "ck"){
+        if(subLog.replace("ck ","") === "detection"){
+          logsSetArray.push(["01",0,"00","CK","FLOOR：" + floors[0],1,"00",newDATE])
         }
       }else {
         logsSetArray.push(["02",1,"03","UNKNOWN CODE","/-/",0,"00",newDATE])
