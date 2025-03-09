@@ -312,7 +312,7 @@ function inputTerminal(){
   logTerminal.value = ">"
   logTerminal.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-      const newDATE = timeTypeChanger();
+      let newDATE = timeTypeChanger();
       const subLog = (logTerminal.value).replace(">","")
       if(subLog === "togle training"){
       }else if(subLog === "togle bell"){
