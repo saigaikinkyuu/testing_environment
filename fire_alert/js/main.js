@@ -94,8 +94,6 @@ function timeTypeChanger(){
 }
 
 //NOT NEED TO ANYTHING EVENTS
-(() => {
-try{
   let logsSetArray = new Proxy(logs, {
     set: function(target, property, value) {
       console.log(`配列の ${property} が ${value} に変更されました。`);
@@ -189,12 +187,6 @@ try{
       return true;
     }
   });
-}catch(e){
-  system = false;
-  alert("不明コード：ERROR01")
-  logsSetArray.push(["01",0,"00","/-/","/-/",0,"99",newDATE])
-}
-})()
 
 (() => {
   system = true;
