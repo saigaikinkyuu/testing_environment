@@ -269,10 +269,12 @@ button2s.forEach(element => {
     if(floors.length > 0 && !floors.includes(floorName)) return
     if(!floors.includes(floorName)){
       floors.push(floorName)
+      document.getElementById("floor_button_" + floors[0]).style.color = "red"
       logsSetArray.push(["03",0,"00","/-/","/-/",0,"05",newDATE])
       audioPlay((Number(floorName) + 3),[]);
     }else {
       floors.splice(floors.indexOf(floorName),floors.indexOf(floorName) + 1)
+      document.getElementById("floor_button_" + floors[0]).style.color = "black"
       source.stop();
     }
   });
@@ -285,6 +287,7 @@ stopDetect.addEventListener("click" , () => {
     source.stop();
     playingFlag = false;
     document.getElementById("ttlPage").style.color = "black"
+    document.getElementById("floor_button_" + floors[0]).style.color = "black"
     floors = [];
     if(fire){
       logsSetArray.push(["03",0,"00","/-/","/-/",0,"05",newDATE])
