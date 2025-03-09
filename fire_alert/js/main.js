@@ -80,7 +80,6 @@ let logProJ = {
 
 // DATE FUNCTION
 function timeTypeChanger(){
-  if(!system) return
   const newD = new Date();
   const year = newD.getFullYear();
   const month = ("0" + (newD.getMonth() + 1)).slice(-2);
