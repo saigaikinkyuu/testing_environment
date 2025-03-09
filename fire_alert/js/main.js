@@ -162,7 +162,7 @@ let logsSetArray = new Proxy(logs, {
     }
     const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
     if((document.getElementById("log_display").innerHTML).includes(message)) return true
-    document.getElementById("log_display").innerHTML = (document.getElementById("log_display").innerHTML).replace("<input id='log_terminal' type='text' />","")
+    document.getElementById("log_display").innerHTML = (document.getElementById("log_display").innerHTML).replace('<input type="text" id="log_terminal">',"")
     document.getElementById("log_display").innerHTML += message_array[0] + message_array[2]
     document.getElementById("log_display").innerHTML += message_array[3] + message_array[5]
     document.getElementById("log_display").innerHTML += message_array[6] + message_array[8]
@@ -176,7 +176,7 @@ let logsSetArray = new Proxy(logs, {
         },1000)
       }
     }
-    document.getElementById("log_display").innerHTML += "<input id='log_terminal' type='text' />";
+    document.getElementById("log_display").innerHTML += '<input type="text" id="log_terminal">';
     inputTerminal()
     return true;
   },
