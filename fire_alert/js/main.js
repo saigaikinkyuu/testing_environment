@@ -325,6 +325,8 @@ function inputTerminal(){
       }else if(subLog === "system start"){
         system = true;
         logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
+      }else {
+        logsSetArray.push(["02",1,"03","不明なコード","/-/",0,"00",newDATE])
       }
     }
   });
