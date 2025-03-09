@@ -94,99 +94,105 @@ function timeTypeChanger(){
 }
 
 //NOT NEED TO ANYTHING EVENTS
-let logsSetArray = new Proxy(logs, {
-  set: function(target, property, value) {
-    console.log(`配列の ${property} が ${value} に変更されました。`);
-    if(property === "length") return true
-    target[property] = value;
-    const newData = logs[logs.length - 1]
-    // ディスプレイ表示を更新
-    const vLN = logProJ["LN"][newData[0]]
-    const vEF = newData[1]
-    let vEN = "/-/"
-    if(vEF){
-      vEN = logProJ["EN"][newData[2]]
-    }
-    const vLT = newData[3]
-    const vLB = newData[4]
-    const vLTBF = newData[5]
-    let vLTBN_t = "/-/"
-    let vLTBN_m = "/-/"
-    if(!vLTBF){
-      vLTBN_t = logProJ["LTBN"][newData[6]]["t"]
-      vLTBN_m = logProJ["LTBN"][newData[6]]["m"]
-    }
-    const vTM = newData[7]
-    let ttl
-    let body
-    let time = vTM
-    let message_array = [];
-    if(vEF){
-      message_array.push("<span style='color: red; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
-      message_array.push(vLT)
-      message_array.push("</span>")
-      message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
-      message_array.push(time)
-      message_array.push("</span>")
-      message_array.push("<span style='color: red;' id='log_body_" + logs.length + "'>")
-      message_array.push(vEN)
-      message_array.push("</span><br>")
-      ttl = "<span style='color: red; margin-right: 15px;'>" + vLT
-      body = "<span style='color: red;'>" + vEN
-    }else {
+try{
+  let logsSetArray = new Proxy(logs, {
+    set: function(target, property, value) {
+      console.log(`配列の ${property} が ${value} に変更されました。`);
+      if(property === "length") return true
+      target[property] = value;
+      const newData = logs[logs.length - 1]
+      // ディスプレイ表示を更新
+      const vLN = logProJ["LN"][newData[0]]
+      const vEF = newData[1]
+      let vEN = "/-/"
+      if(vEF){
+        vEN = logProJ["EN"][newData[2]]
+      }
+      const vLT = newData[3]
+      const vLB = newData[4]
+      const vLTBF = newData[5]
+      let vLTBN_t = "/-/"
+      let vLTBN_m = "/-/"
       if(!vLTBF){
-        message_array.push("<span style='color: white; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
-        message_array.push(vLN + "<" + vLTBN_t + ">")
-        message_array.push("</span>")
-        message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
-        message_array.push(time)
-        message_array.push("</span>")
-        message_array.push("<span style='color: white;' id='log_body_" + logs.length + "'>")
-        message_array.push(vLTBN_m)
-        message_array.push("</span><br>")
-        ttl = "<span style='color: white; margin-right: 15px;'>" + vLN + "<" + vLTBN_t + ">"
-        body = "<span style='color: white;'>" + vLTBN_m
-      }else {
-        message_array.push("<span style='color: white; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
+        vLTBN_t = logProJ["LTBN"][newData[6]]["t"]
+        vLTBN_m = logProJ["LTBN"][newData[6]]["m"]
+      }
+      const vTM = newData[7]
+      let ttl
+      let body
+      let time = vTM
+      let message_array = [];
+      if(vEF){
+        message_array.push("<span style='color: red; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
         message_array.push(vLT)
         message_array.push("</span>")
         message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
         message_array.push(time)
         message_array.push("</span>")
-        message_array.push("<span style='color: white;' id='log_body_" + logs.length + "'>")
-        message_array.push(vLB)
+        message_array.push("<span style='color: red;' id='log_body_" + logs.length + "'>")
+        message_array.push(vEN)
         message_array.push("</span><br>")
-        ttl = "<span style='color: white; margin-right: 15px;'>" + vLT
-        body = "<span style='color: white;'>" + vLB
+        ttl = "<span style='color: red; margin-right: 15px;'>" + vLT
+        body = "<span style='color: red;'>" + vEN
+      }else {
+        if(!vLTBF){
+          message_array.push("<span style='color: white; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
+          message_array.push(vLN + "<" + vLTBN_t + ">")
+          message_array.push("</span>")
+          message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
+          message_array.push(time)
+          message_array.push("</span>")
+          message_array.push("<span style='color: white;' id='log_body_" + logs.length + "'>")
+          message_array.push(vLTBN_m)
+          message_array.push("</span><br>")
+          ttl = "<span style='color: white; margin-right: 15px;'>" + vLN + "<" + vLTBN_t + ">"
+          body = "<span style='color: white;'>" + vLTBN_m
+        }else {
+          message_array.push("<span style='color: white; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
+          message_array.push(vLT)
+          message_array.push("</span>")
+          message_array.push("<span style='color: white; margin-right: 15px;' id='log_time_" + logs.length + "'>")
+          message_array.push(time)
+          message_array.push("</span>")
+          message_array.push("<span style='color: white;' id='log_body_" + logs.length + "'>")
+          message_array.push(vLB)
+          message_array.push("</span><br>")
+          ttl = "<span style='color: white; margin-right: 15px;'>" + vLT
+          body = "<span style='color: white;'>" + vLB
+        }
       }
-    }
-    const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
-    if((document.getElementById("log_display").innerHTML).includes(message)) return true
-    document.getElementById("log_display").innerHTML = (document.getElementById("log_display").innerHTML).replace('<input type="text" id="log_terminal">',"")
-    document.getElementById("log_display").innerHTML += message_array[0] + message_array[2]
-    document.getElementById("log_display").innerHTML += message_array[3] + message_array[5]
-    document.getElementById("log_display").innerHTML += message_array[6] + message_array[8]
-    let element_id_name = ["log_ttl_","log_time_","log_body_"]
-    for(let i = 0;i < 3;i++){
-      let t = 1 + ( i * 3 );
-      for(let u = 0;u<message_array[t].length;u++){
-        if((document.getElementById(element_id_name[i] + logs.length).innerHTML).includes(message_array[t])) break
-        setTimeout(() => {
-          document.getElementById(element_id_name[i] + logs.length).innerHTML += message_array[t][u];
-        },1000)
+      const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
+      if((document.getElementById("log_display").innerHTML).includes(message)) return true
+      document.getElementById("log_display").innerHTML = (document.getElementById("log_display").innerHTML).replace('<input type="text" id="log_terminal">',"")
+      document.getElementById("log_display").innerHTML += message_array[0] + message_array[2]
+      document.getElementById("log_display").innerHTML += message_array[3] + message_array[5]
+      document.getElementById("log_display").innerHTML += message_array[6] + message_array[8]
+      let element_id_name = ["log_ttl_","log_time_","log_body_"]
+      for(let i = 0;i < 3;i++){
+        let t = 1 + ( i * 3 );
+        for(let u = 0;u<message_array[t].length;u++){
+          if((document.getElementById(element_id_name[i] + logs.length).innerHTML).includes(message_array[t])) break
+          setTimeout(() => {
+            document.getElementById(element_id_name[i] + logs.length).innerHTML += message_array[t][u];
+          },1000)
+        }
       }
+      document.getElementById("log_display").innerHTML += '<input type="text" id="log_terminal">';
+      inputTerminal()
+      return true;
+    },
+    deleteProperty: function(target, property) {
+      console.log(`配列の ${property} が削除されました。`);
+      delete target[property];
+      // ディスプレイ表示を更新
+      return true;
     }
-    document.getElementById("log_display").innerHTML += '<input type="text" id="log_terminal">';
-    inputTerminal()
-    return true;
-  },
-  deleteProperty: function(target, property) {
-    console.log(`配列の ${property} が削除されました。`);
-    delete target[property];
-    // ディスプレイ表示を更新
-    return true;
-  }
-});
+  });
+}catch(e){
+  system = false;
+  alert("不明コード：ERROR01")
+  logsSetArray.push(["01",0,"00","/-/","/-/",0,"99",newDATE])
+}
 
 (() => {
   system = true;
