@@ -161,7 +161,7 @@ function timeTypeChanger(){
       }
       const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
       if((document.getElementById("log_display").innerHTML).includes(message)) return true
-      document.getElementById("log_display").innerHTML = (document.getElementById("log_display").innerHTML).replace('<input type="text" id="log_terminal">',"")
+      document.getElementById("log_display").innerHTML = (document.getElementById("log_display").innerHTML).replace('<input type="text" id="log_terminal" autocomplete="off">',"")
       document.getElementById("log_display").innerHTML += message_array[0] + message_array[2]
       document.getElementById("log_display").innerHTML += message_array[3] + message_array[5]
       document.getElementById("log_display").innerHTML += message_array[6] + message_array[8]
@@ -175,7 +175,7 @@ function timeTypeChanger(){
           },1000)
         }
       }
-      document.getElementById("log_display").innerHTML += '<input type="text" id="log_terminal">';
+      document.getElementById("log_display").innerHTML += '<input type="text" id="log_terminal" autocomplete="off">';
       inputTerminal()
       return true;
     },
