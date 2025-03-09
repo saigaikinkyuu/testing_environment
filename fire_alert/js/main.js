@@ -94,6 +94,7 @@ function timeTypeChanger(){
 }
 
 //NOT NEED TO ANYTHING EVENTS
+(() => {
 try{
   let logsSetArray = new Proxy(logs, {
     set: function(target, property, value) {
@@ -193,6 +194,7 @@ try{
   alert("不明コード：ERROR01")
   logsSetArray.push(["01",0,"00","/-/","/-/",0,"99",newDATE])
 }
+})()
 
 (() => {
   system = true;
