@@ -124,13 +124,13 @@ function timeTypeChanger(){
       let message_array = [];
       if(vEF){
         message_array.push("<span style='color: red; margin-right: 15px;' id='log_ttl_" + logs.length + "'>")
-        message_array.push(vLT)
+        message_array.push(vEN)
         message_array.push("</span>")
         message_array.push("<span style='color: red; margin-right: 15px;' id='log_time_" + logs.length + "'>")
         message_array.push(time)
         message_array.push("</span>")
         message_array.push("<span style='color: red;' id='log_body_" + logs.length + "'>")
-        message_array.push(vEN)
+        message_array.push(vLT)//vEN
         message_array.push("</span><br>")
         ttl = "<span style='color: red; margin-right: 15px;'>" + vLT
         body = "<span style='color: red;'>" + vEN
@@ -347,7 +347,7 @@ function inputTerminal(){
           logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
         }
       }else if(subLog.includes("detect")){
-        if(subLog.replace("detect ") === "1" || subLog.replace("detect ") === "2" || subLog.replace("detect ") === "3" || subLog.replace("detect ") === "4"){
+        if(subLog.replace("detect ","") === "1" || subLog.replace("detect ","") === "2" || subLog.replace("detect ","") === "3" || subLog.replace("detect ","") === "4"){
           if(system){
             startFlag = true;
             document.getELementById("floor_button_" + subLog.replace("detect ")).dispatchEvent(new Event('click'));
