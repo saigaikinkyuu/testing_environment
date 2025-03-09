@@ -320,10 +320,10 @@ function inputTerminal(){
       }else if(subLog === "togle light"){
         //
       }else if(subLog === "system finish"){
-        startFlag = false;
+        system = false;
         logsSetArray.push(["01",0,"00","/-/","/-/",0,"99",newDATE])
       }else if(subLog === "system start"){
-        startFlag = true;
+        system = true;
         logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
       }
     }
