@@ -11,6 +11,7 @@ let logs = [];
 let floors = [];
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let source = null;
+let system = false;
 /*
  <LOG>
  [(LN),(EF),(EN),(LT),(LB),(LTBF),(LTBN),(TM)]
@@ -31,8 +32,12 @@ let logProJ = {
    },
    "LTBN" : {
       "00" : {
-         "t" : "起動α",
-         "m" : "システム起動を検知"
+         "t" : "SYSTEM",
+         "m" : "SYSTEM STARTED!"
+      },
+      "99" : {
+         "t" : "SYSTEM",
+         "m" : "SYSTEM FINISHED!"
       },
       "01" : {
          "t" : "起動α",
@@ -75,6 +80,7 @@ let logProJ = {
 
 // DATE FUNCTION
 function timeTypeChanger(){
+  if(!system) return
   const newD = new Date();
   const year = newD.getFullYear();
   const month = ("0" + (newD.getMonth() + 1)).slice(-2);
@@ -89,6 +95,7 @@ function timeTypeChanger(){
 
 //NOT NEED TO ANYTHING EVENTS
 let logsSetArray = new Proxy(logs, {
+  if(!system) return
   set: function(target, property, value) {
     console.log(`配列の ${property} が ${value} に変更されました。`);
     if(property === "length") return true
@@ -156,6 +163,7 @@ let logsSetArray = new Proxy(logs, {
     }
     const message = ttl + "</span>" + "<span style='color: white; margin-right: 15px;'>" + time + "</span>" + body + "</span><br>"
     if((document.getElementById("log_display").innerHTML).includes(message)) return true
+    document.getElementById("log_display").innerHTML = (document.getElementById("log_display").innerHTML).replace("<input id='log_terminal' type='text' />","")
     document.getElementById("log_display").innerHTML += message_array[0] + message_array[2]
     document.getElementById("log_display").innerHTML += message_array[3] + message_array[5]
     document.getElementById("log_display").innerHTML += message_array[6] + message_array[8]
@@ -169,6 +177,8 @@ let logsSetArray = new Proxy(logs, {
         },1000)
       }
     }
+    document.getElementById("log_display").innerHTML += "<input id='log_terminal' type='text' />";
+    inputTerminal()
     return true;
   },
   deleteProperty: function(target, property) {
@@ -180,12 +190,14 @@ let logsSetArray = new Proxy(logs, {
 });
 
 (() => {
+  system = true;
   const newDATE = timeTypeChanger();
   logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
 })()
 
 //NEED TO ADMIRE EVENT
 function audioPlay(num,array){
+  if(!system) return
   const audioFileArray = ["startsVoise","一般①","誤報①","感知_1","感知_2","感知_3","感知_4"]
   let audioFileName = ""
   if(num){
@@ -216,6 +228,7 @@ function audioPlay(num,array){
 }
 
 starts.addEventListener("click" , () => {
+  if(!system) return
   startFlag = true;
   floors = [];
   document.getElementById("ttlPage").style.color = "red"
@@ -225,6 +238,7 @@ starts.addEventListener("click" , () => {
 });
 
 fireThere.addEventListener("click" , () => {
+ if(!system) return
  if(startFlag && floors.length > 0){
     fire = true;
     source.stop();
@@ -237,6 +251,7 @@ fireThere.addEventListener("click" , () => {
 });
 
 fireThereNot.addEventListener("click" , () => {
+ if(!system) return
  if(startFlag && floors.length > 0){
     fire = false;
     source.stop();
@@ -249,6 +264,7 @@ fireThereNot.addEventListener("click" , () => {
 });
 
 button2s.forEach(element => {
+ if(!system) return
   element.addEventListener("click", function() {
     const floorName = element.dataset.floor
     const newDATE = timeTypeChanger();
@@ -265,6 +281,7 @@ button2s.forEach(element => {
 });
 
 stopDetect.addEventListener("click" , () => {
+ if(!system) return
  if(startFlag && floors.length > 0){
     fire = false;
     source.stop();
@@ -289,3 +306,27 @@ stopDetect.addEventListener("click" , () => {
     },1000)
  }
 });
+
+
+function inputTerminal(){
+  const logTerminal = document.getElementById('log_terminal');
+  logTerminal.value = ">"
+  logTerminal.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      const newDATE = timeTypeChanger();
+      const subLog = (logTerminal.value).replace(">","")
+      if(subLog === "togle training"){
+      }else if(subLog === "togle bell"){
+        //
+      }else if(subLog === "togle light"){
+        //
+      }else if(subLog === "system finish"){
+        startFlag = false;
+        logsSetArray.push(["01",0,"00","/-/","/-/",0,"99",newDATE])
+      }else if(subLog === "system start"){
+        startFlag = true;
+        logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
+      }
+    }
+  });
+}
