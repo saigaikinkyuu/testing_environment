@@ -350,7 +350,7 @@ function inputTerminal(){
         if(subLog.replace("detect ","") === "1" || subLog.replace("detect ","") === "2" || subLog.replace("detect ","") === "3" || subLog.replace("detect ","") === "4"){
           if(system){
             startFlag = true;
-            document.getELementById("floor_button_" + subLog.replace("detect ")).dispatchEvent(new Event('click'));
+            document.getElementById("floor_button_" + subLog.replace("detect ","")).dispatchEvent(new Event('click'));
           }else {
             logsSetArray.push(["02",1,"05","UNAVAILABLE CODE","/-/",0,"00",newDATE])
           }
