@@ -265,8 +265,8 @@ fireThereNot.addEventListener("click" , () => {
 });
 
 button2s.forEach(element => {
- if(!system) return
   element.addEventListener("click", function() {
+    if(!system) return
     const floorName = element.dataset.floor
     const newDATE = timeTypeChanger();
     if(floors.length > 0 && !floors.includes(floorName)) return
