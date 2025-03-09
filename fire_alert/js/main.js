@@ -9,9 +9,9 @@ let audioStopFlag = false;
 let fire = false;
 let logs = [];
 let floors = [];
+let system = false;
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let source = null;
-let system = false;
 /*
  <LOG>
  [(LN),(EF),(EN),(LT),(LB),(LTBF),(LTBN),(TM)]
@@ -95,7 +95,6 @@ function timeTypeChanger(){
 
 //NOT NEED TO ANYTHING EVENTS
 let logsSetArray = new Proxy(logs, {
-  if(!system) return
   set: function(target, property, value) {
     console.log(`配列の ${property} が ${value} に変更されました。`);
     if(property === "length") return true
