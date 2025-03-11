@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>スコアボード</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+        <style>
+            *{
+                font-family: "Zen Maru Gothic", serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            input {
+                margin-left: 10%;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                background-color: #94bdff;
+                color: #1400ae;
+                font-weight: 600;
+                border-radius: 10px;
+                border: 2px solid white;
+                font-size: 20px;
+                padding: 0px;
+                text-align: center;
+            }
+            input:focus {
+                outline: 0;
+            }
+            .box{
+                background-color: #859dff;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-radius: 10px;
+            }
+            .box_ttl{
+                font-size: 15px;
+                text-align: center;
+                margin: 0px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                width: 80%;
+                margin-left: 10%;
+                background-color: #d2d2ff;
+                border-radius: 10px;
+                color: #4f00bc;
+                font-weight: 600;
+            }
+            .box_num{
+                font-size: 30px;
+                margin: 0px;
+                text-align: center;
+                width: 80%;
+                margin-left: 10%;
+                background-color: #ffffff;
+                color: #0832bd;
+                font-weight: bold;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+            .total{
+                background-color: #777dff;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-radius: 10px;
+                margin-top: 20px;
+            }
+            .total_ttl{
+                font-size: 15px;
+                text-align: center;
+                margin: 0px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                width: 80%;
+                margin-left: 10%;
+                background-color: #e1edff;
+                border-radius: 10px;
+                color: #4f00bc;
+                font-weight: 600;
+            }
+            .total_num{
+                font-size: 30px;
+                margin: 0px;
+                text-align: center;
+                width: 80%;
+                margin-left: 10%;
+                background-color: #ffffff;
+                color: #0832bd;
+                font-weight: bold;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+            #box2{
+                margin-top: 10px;
+            }
+            #box3{
+                margin-top: 10px;
+            }
+            body{
+                display: flex;
+            }
+            #content{
+                width: 200px;
+            }
+            #setting{
+                width: 400px;
+            }
+            .st_label{
+                margin-top: 10px;
+                text-align: center;
+                color: #0057ae;
+                margin-bottom: 10px;
+                font-size: 20px;
+                width: 20%;
+            }
+            #setting{
+                margin-left: 20px;
+                background-color: #b8e9ff;
+                border-radius: 10px;
+                overflow-y: scroll;
+                height: 460px;
+            }
+            .content_st{
+                display: flex;
+                width: 90%;
+                margin-left: 5%;
+            }
+            .ttl_st{
+                text-align: center;
+                font-size: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                color: #0057ae;
+            }
+            .page_button{
+                font-size: 20px;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                display: block;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin-top: 5px;
+                background-color: #b9d2ff;
+                border: 3px solid white;
+                border-radius: 5px;
+                color: #0064c2;
+            }
+            .submit_button{
+                font-size: 20px;
+                margin-left: 30px;
+                margin-right: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                display: block;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin-top: 5px;
+                background-color: #649bff;
+                border: 3px solid white;
+                border-radius: 5px;
+                color: #d3eaff;
+            }
+            #header{
+                display: flex;
+            }
+            .st_label_style{
+                margin-top: 10px;
+                text-align: center;
+                color: #0057ae;
+                margin-bottom: 10px;
+                font-size: 20px;
+                width: 45%;
+            }
+            .input_score{
+                width: 80%;
+            }
+            .input_style{
+                width: 55%;
+            }
+            .coppy_button{
+                font-size: 20px;
+                display: block;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin-top: 5px;
+                background-color: #b9d2ff;
+                border: 3px solid white;
+                border-radius: 5px;
+                color: #0064c2;
+                width: 90%;
+                text-align: center;
+                margin-left: 5%;
+                margin-bottom: 10px;
+            }
+            a{
+                text-decoration: none;
+            }
+            #coppy_area{
+                display: block;
+                resize: none;
+                width: 90%;
+                height: fit-content;
+                margin-left: 5%;
+                background-color: #94bdff;
+                color: #1400ae;
+                border: 3px solid white;
+                margin-bottom: 10px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body style="overflow: hidden;">
+        <div id="content">
+            <div id="box1" class="box">
+                <h3 id="box_ttl_1" class="box_ttl">BOX1</h3>
+                <h2 id="box_score_1" class="box_num">0</h2>
+            </div>
+            <div id="box2" class="box">
+                <h3 id="box_ttl_2" class="box_ttl">BOX2</h3>
+                <h2 id="box_score_2" class="box_num">0</h2>
+            </div>
+            <div id="box3" class="box">
+                <h3 id="box_ttl_3" class="box_ttl">BOX3</h3>
+                <h2 id="box_score_3" class="box_num">0</h2>
+            </div>
+            <div id="total" class="total">
+                <h3 class="total_ttl">合計</h3>
+                <h2 id="box_score_total" class="total_num">0</h2>
+            </div>
+        </div>
+        <div id="setting">
+            <div id="header">
+                <a id="score_button" class="page_button" href="#">スコア</a>
+                <a id="style_button" class="page_button" href="#">スタイル</a>
+                <a id="submit_button" class="submit_button" href="#">確定</a>
+            </div>
+            <div id="score_st">
+                <h2 class="ttl_st">スコア入力</h2>
+                <div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box1</h3>
+                        <input id="box1_in_va" class="input_score" type="number" value="0" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box2</h3>
+                        <input id="box2_in_va" class="input_score" type="number" value="0" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box3</h3>
+                        <input id="box3_in_va" class="input_score" type="number" value="0" />
+                    </div>
+                </div>
+                <h2 class="ttl_st">スコア換算</h2>
+                <div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box1</h3>
+                        <input id="box1_in_ex" class="input_score" type="number" value="1" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box2</h3>
+                        <input id="box2_in_ex" class="input_score" type="number" value="1" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box3</h3>
+                        <input id="box3_in_ex" class="input_score" type="number" value="1" />
+                    </div>
+                </div>
+                <h2 class="ttl_st">Boxのタイトル</h2>
+                <div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box1</h3>
+                        <input id="input_box_ttl_1" class="input_score" type="text" value="box1" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box2</h3>
+                        <input id="input_box_ttl_2" class="input_score" type="text" value="box2" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label">Box3</h3>
+                        <input id="input_box_ttl_3" class="input_score" type="text" value="box3" />
+                    </div>
+                </div>
+                <h2 class="ttl_st">Boxの個数・カスタム</h2>
+                <div>
+                    <div class="content_st">
+                        <h3 class="st_label">個数</h3>
+                        <input id="box_length" class="input_score" type="number" value="3" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label" style="width: 40%;">合計の有無</h3>
+                        <input id="box_total_need_check" class="input_score" type="checkbox" style="width: 60%;margin-left: 10px;" />
+                    </div>
+                </div>
+            </div>
+            <div id="style_st" style="display: none;">
+                <h2 class="ttl_st">色変更（通常）</h2>
+                <div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">Box</h3>
+                        <input id="box_in_co_box" class="input_style" type="text" value="#859dff" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">タイトル(文字)</h3>
+                        <input id="box_in_co_ttl_te" class="input_style" type="text" value="#4f00bc" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">タイトル(背景)</h3>
+                        <input id="box_in_co_ttl_ba" class="input_style" type="text" value="#d2d2ff" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">スコア(文字)</h3>
+                        <input id="box_in_co_sc_te" class="input_style" type="text" value="#0832bd" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">スコア(背景)</h3>
+                        <input id="box_in_co_sc_ba" class="input_style" type="text" value="#ffffff" />
+                    </div>
+                </div>
+                <h2 class="ttl_st">色変更（合計）</h2>
+                <div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">Box</h3>
+                        <input id="total_in_co_box" class="input_style" type="text" value="#777dff" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">タイトル(文字)</h3>
+                        <input id="total_in_co_ttl_te" class="input_style" type="text" value="#4f00bc" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">タイトル(背景)</h3>
+                        <input id="total_in_co_ttl_ba" class="input_style" type="text" value="#e1edff" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">スコア(文字)</h3>
+                        <input id="total_in_co_sc_te" class="input_style" type="text" value="#0832bd" />
+                    </div>
+                    <div class="content_st">
+                        <h3 class="st_label_style">スコア(背景)</h3>
+                        <input id="total_in_co_sc_ba" class="input_style" type="text" value="#ffffff" />
+                    </div>
+                </div>
+                <h2 class="ttl_st">スタイルキー</h2>
+                <!-- <a id="coppy_button" class="coppy_button" href="#">コピーする</a> -->
+                <textare id="coppy_area"></textarea>
+            </div>
+        </div>
+        <script src="./index.js"></script>
+    </body>
+</html>

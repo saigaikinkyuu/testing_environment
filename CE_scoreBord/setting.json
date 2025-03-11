@@ -1,0 +1,51 @@
+{
+    "box" : {
+        "box1" : {
+            "ttl" : "box1",
+            "num" : 0,
+            "exchange" : 1
+        },
+        "box2" : {
+            "ttl" : "box2",
+            "num" : 0,
+            "exchange" : 1
+        },
+        "box3" : {
+            "ttl" : "box3",
+            "num" : 0,
+            "exchange" : 1
+        },
+        "total" : {
+            "display" : true
+        }
+    },
+    "style" : {
+        "key" : "133157255.079000188.210210255.008050189.255255255.119125255.079000188.225237255.008050189.255255255.",
+        "normal" : {
+            "box" : {
+                "color" : "#859dff"
+            },
+            "ttl" : {
+                "color1" : "#4f00bc",
+                "color2" : "#d2d2ff"
+            },
+            "score" : {
+                "color1" : "#0832bd",
+                "color2" : "#ffffff"
+            }
+        },
+        "total" : {
+            "box" : {
+                "color" : "#777dff"
+            },
+            "ttl" : {
+                "color1" : "#4f00bc",
+                "color2" : "#e1edff"
+            },
+            "score" : {
+                "color1" : "#0832bd",
+                "color2" : "#ffffff"
+            }
+        }
+    }
+}
