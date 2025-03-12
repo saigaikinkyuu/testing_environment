@@ -241,7 +241,9 @@ fireThere.addEventListener("click" , () => {
  if(!system) return
  if(startFlag && floors.length > 0){
     fire = true;
-    source.stop();
+    if(source){
+      source.stop();
+    }
     stanby = false;
     playingFlag = false;
     document.getElementById("ttlPage").style.color = "red"
@@ -256,7 +258,9 @@ fireThereNot.addEventListener("click" , () => {
  if(startFlag && floors.length > 0){
     fire = false;
     stanby = false;
-    source.stop();
+    if(source){
+      source.stop();
+    }
     playingFlag = false;
     document.getElementById("ttlPage").style.color = "red"
     const newDATE = timeTypeChanger();
