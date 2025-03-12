@@ -347,7 +347,21 @@ function inputTerminal(){
           logsSetArray.push(["01",0,"00","/-/","/-/",0,"00",newDATE])
         }
       }else if(subLog.slice(0,6) === "detect"){
-        if(subLog.replace("detect ","") === "1" || subLog.replace("detect ","") === "2" || subLog.replace("detect ","") === "3" || subLog.replace("detect ","") === "4"){
+        if(subLog.replace("detect ","") === "1 detection" || subLog.replace("detect ","") === "2 detection" || subLog.replace("detect ","") === "3 detection" || subLog.replace("detect ","") === "4 detection"){
+          if(system){
+            startFlag = true;
+            fireThere.dispatchEvent(new Event('click'));
+          }else {
+            logsSetArray.push(["02",1,"05","UNAVAILABLE CODE","/-/",0,"00",newDATE])
+          }
+        }else if(subLog.replace("detect ","") === "fire"){
+          if(system){
+            startFlag = true;
+            fireThereNot.dispatchEvent(new Event('click'));
+          }else {
+            logsSetArray.push(["02",1,"05","UNAVAILABLE CODE","/-/",0,"00",newDATE])
+          }
+        }else if(subLog.replace("detect ","") === "noFire"){
           if(system){
             startFlag = true;
             document.getElementById("floor_button_" + subLog.replace("detect ","")).dispatchEvent(new Event('click'));
