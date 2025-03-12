@@ -357,6 +357,9 @@ function inputTerminal(){
         }else if(subLog.replace("detect ","") === "fire"){
           if(system){
             startFlag = true;
+            if(!floors.length){
+              floors.push(1)
+            }
             fireThereNot.dispatchEvent(new Event('click'));
           }else {
             logsSetArray.push(["02",1,"05","UNAVAILABLE CODE","/-/",0,"00",newDATE])
@@ -364,6 +367,9 @@ function inputTerminal(){
         }else if(subLog.replace("detect ","") === "noFire"){
           if(system){
             startFlag = true;
+            if(!floors.length){
+              floors.push(1)
+            }
             document.getElementById("floor_button_" + subLog.replace("detect ","")).dispatchEvent(new Event('click'));
           }else {
             logsSetArray.push(["02",1,"05","UNAVAILABLE CODE","/-/",0,"00",newDATE])
