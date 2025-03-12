@@ -325,6 +325,7 @@ stopDetect.addEventListener("click" , () => {
 
 
 function inputTerminal(){
+  try{
   const logTerminal = document.getElementById('log_terminal');
   logTerminal.value = ">"
   logTerminal.addEventListener('keydown', function(event) {
@@ -390,4 +391,8 @@ function inputTerminal(){
       }
     }
   });
+  }catch(e){
+    logsSetArray.push(["02",1,"03","UNKNOWN CODE","/-/",0,"00",newDATE])
+    console.log(e)
+  }
 }
