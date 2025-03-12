@@ -354,7 +354,7 @@ function inputTerminal(){
         if(subLog.replace("detect ","") === "1 detection" || subLog.replace("detect ","") === "2 detection" || subLog.replace("detect ","") === "3 detection" || subLog.replace("detect ","") === "4 detection"){
           if(system){
             startFlag = true;
-            document.getElementById("floor_button_" + (subLog.replace("detect ","")).replace(" detection")).dispatchEvent(new Event('click'));
+            document.getElementById("floor_button_" + (subLog.replace("detect ","")).replace(" detection","")).dispatchEvent(new Event('click'));
           }else {
             logsSetArray.push(["02",1,"05","UNAVAILABLE CODE","/-/",0,"00",newDATE])
           }
