@@ -19,13 +19,13 @@ function timeTypeChanger(){
 (() => {
   setInterval(() => {
     let d = timeTypeChanger();
-    log_dis_ck.innerHTML += "<span class'log_ttl'>TESTING FUNC</span><span class='log_time'>" + d + "</span><span class='log_body'>THIS IS TESTING.</span>";
-    log_dis_em.innerHTML += "<span class'log_ttl'>TESTING FUNC</span><span class='log_time'>" + d + "</span><span class='log_body'>THIS IS TESTING.</span>";
+    log_dis_ck.innerHTML += "<span class'log_ttl'>TESTING FUNC</span><span class='log_time'>" + d + "</span><span class='log_body'>THIS IS TESTING.</span><br>";
+    log_dis_em.innerHTML += "<span class'log_ttl'>TESTING FUNC</span><span class='log_time'>" + d + "</span><span class='log_body'>THIS IS TESTING.</span><br>";
     if (log_dis_ck.scrollHeight > log_dis_ck.clientHeight) {
       log_dis_ck.scrollTop = log_dis_ck.scrollHeight;
     }
-    if (log_dis_ck.scrollHeight > log_dis_ck.clientHeight) {
-      log_dis_ck.scrollTop = log_dis_ck.scrollHeight;
+    if (log_dis_em.scrollHeight > log_dis_em.clientHeight) {
+      log_dis_em.scrollTop = log_dis_em.scrollHeight;
     }
   },1000)
 })()
