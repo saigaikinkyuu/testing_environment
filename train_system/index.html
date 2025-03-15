@@ -8,9 +8,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap" rel="stylesheet">
   <style>
     #display{
       display: flex;
+    }
+    .font_1{
+      font-family: "DotGothic16", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .font_2{
+      font-family: "M PLUS 1 Code", monospace;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
     }
     #terminal1{
       width: 40%;
@@ -41,13 +53,13 @@
   <div id="display">
     <div id="terminal1">
       <!-- TERMINAL -->
-      <h2 class="log_ttl_box">指令卓（CK）</h2>
-      <div id="log_1" class="log_style_class"></div>
+      <h2 class="log_ttl_box font_2">指令卓（CK）</h2>
+      <div id="log_1" class="log_style_class font_1"></div>
     </div>
     <div id="terminal2">
       <!-- TERMINAL -->
-      <h2 class="log_ttl_box">指令卓（EM / TS）</h2>
-      <div id="log_2" class="log_style_class"></div>
+      <h2 class="log_ttl_box font_2">指令卓（EM / TS）</h2>
+      <div id="log_2" class="log_style_class font_1"></div>
     </div>
   </div>
   <!-- <script src="./js/main.js"></script> -->
