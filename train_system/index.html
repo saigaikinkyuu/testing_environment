@@ -33,9 +33,13 @@
       margin-left: 10%;
     }
     .log_style_class{
-      width: 100%;
+      width: 98%;
       background-color: black;
       height: 300px;
+      padding-right: 1%;
+      padding-left: 1%;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
     .log_ttl_box{
       margin-top: 10px;
@@ -47,6 +51,28 @@
       padding-top: 10px;
       padding-bottom: 10px;
     }
+    .log_ttl{
+      color: white;
+      margin-right: 10px;
+    }
+    .log_time{
+      color: white;
+      margin-right: 10px;
+    }
+    .log_body{
+      color: white;
+    }
+    .log_ttl_em{
+      color: red;
+      margin-right: 10px;
+    }
+    .log_time_em{
+      color: red;
+      margin-right: 10px;
+    }
+    .log_body_em{
+      color: red;
+    }
   </style>
 </head>
 <body style="background-color: #bcbcbc;">
@@ -55,14 +81,14 @@
       <!-- TERMINAL -->
       <h2 class="log_ttl_box font_2">指令卓（CK）</h2>
       <div id="log_1" class="log_style_class font_1">
-        <span>Test</span><span>2025.03.15 19:10:03</span><span>Operation is started.(TESTING)</span>
+        <span class="log_ttl">Test</span><span class="log_time">2025.03.15 19:10:03</span><span class="log_body">Operation is started.(TESTING)</span>
       </div>
     </div>
     <div id="terminal2">
       <!-- TERMINAL -->
       <h2 class="log_ttl_box font_2">指令卓（EM / TS）</h2>
       <div id="log_2" class="log_style_class font_1">
-        <span>Test</span><span>2025.03.15 19:10:03</span><span>Operation is started.(TESTING)</span>
+        <span class="log_ttl">Test</span><span class="log_time">2025.03.15 19:10:03</span><span class="log_body">Operation is started.(TESTING)</span>
       </div>
     </div>
   </div>
